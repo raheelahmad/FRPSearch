@@ -7,19 +7,18 @@
 //
 
 import UIKit
+import ReactiveCocoa
+import Result
 
 class ViewController: UIViewController {
+    var signal: SignalProducer<String, NoError>?
+    @IBOutlet weak var searchBar: UISearchBar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        searchBar.rac_searchBarTextDidChange.observeNext {
+            print($0.1)
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-

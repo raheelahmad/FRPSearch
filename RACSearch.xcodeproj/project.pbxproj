@@ -7,14 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		613EA9C61CA76E6200986785 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613EA9C51CA76E6200986785 /* UIKitExtensions.swift */; };
 		61F9B1D31CA739D10028F771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F9B1D21CA739D10028F771 /* AppDelegate.swift */; };
 		61F9B1D51CA739D10028F771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F9B1D41CA739D10028F771 /* ViewController.swift */; };
 		61F9B1D81CA739D10028F771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61F9B1D61CA739D10028F771 /* Main.storyboard */; };
 		61F9B1DA1CA739D10028F771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61F9B1D91CA739D10028F771 /* Assets.xcassets */; };
 		61F9B1DD1CA739D10028F771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61F9B1DB1CA739D10028F771 /* LaunchScreen.storyboard */; };
+		61F9B1EB1CA73BF20028F771 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F9B1E91CA73BF20028F771 /* ReactiveCocoa.framework */; };
+		61F9B1EC1CA73BF30028F771 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61F9B1E91CA73BF20028F771 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		61F9B1ED1CA73BF30028F771 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F9B1EA1CA73BF20028F771 /* Result.framework */; };
+		61F9B1EE1CA73BF30028F771 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61F9B1EA1CA73BF20028F771 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		61F9B1EF1CA73BF30028F771 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				61F9B1EC1CA73BF30028F771 /* ReactiveCocoa.framework in Embed Frameworks */,
+				61F9B1EE1CA73BF30028F771 /* Result.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		613EA9C51CA76E6200986785 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		61F9B1CF1CA739D10028F771 /* RACSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RACSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61F9B1D21CA739D10028F771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61F9B1D41CA739D10028F771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +43,8 @@
 		61F9B1D91CA739D10028F771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61F9B1DC1CA739D10028F771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61F9B1DE1CA739D10028F771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61F9B1E91CA73BF20028F771 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		61F9B1EA1CA73BF20028F771 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,16 +52,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F9B1EB1CA73BF20028F771 /* ReactiveCocoa.framework in Frameworks */,
+				61F9B1ED1CA73BF30028F771 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		613EA9C41CA76E4B00986785 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				613EA9C51CA76E6200986785 /* UIKitExtensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		613EA9C71CA76F0700986785 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61F9B1E91CA73BF20028F771 /* ReactiveCocoa.framework */,
+				61F9B1EA1CA73BF20028F771 /* Result.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		61F9B1C61CA739D10028F771 = {
 			isa = PBXGroup;
 			children = (
 				61F9B1D11CA739D10028F771 /* RACSearch */,
+				613EA9C71CA76F0700986785 /* Frameworks */,
 				61F9B1D01CA739D10028F771 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +99,21 @@
 			children = (
 				61F9B1D21CA739D10028F771 /* AppDelegate.swift */,
 				61F9B1D41CA739D10028F771 /* ViewController.swift */,
+				613EA9C41CA76E4B00986785 /* Extensions */,
+				61F9B1E41CA73AB60028F771 /* Resources */,
+			);
+			path = RACSearch;
+			sourceTree = "<group>";
+		};
+		61F9B1E41CA73AB60028F771 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				61F9B1D61CA739D10028F771 /* Main.storyboard */,
 				61F9B1D91CA739D10028F771 /* Assets.xcassets */,
 				61F9B1DB1CA739D10028F771 /* LaunchScreen.storyboard */,
 				61F9B1DE1CA739D10028F771 /* Info.plist */,
 			);
-			path = RACSearch;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +126,7 @@
 				61F9B1CB1CA739D10028F771 /* Sources */,
 				61F9B1CC1CA739D10028F771 /* Frameworks */,
 				61F9B1CD1CA739D10028F771 /* Resources */,
+				61F9B1EF1CA73BF30028F771 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -137,6 +190,7 @@
 			files = (
 				61F9B1D51CA739D10028F771 /* ViewController.swift in Sources */,
 				61F9B1D31CA739D10028F771 /* AppDelegate.swift in Sources */,
+				613EA9C61CA76E6200986785 /* UIKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +303,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RACSearch",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RACSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raheelahmad.RACSearch;
@@ -260,6 +319,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RACSearch",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RACSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raheelahmad.RACSearch;
@@ -286,6 +350,7 @@
 				61F9B1E31CA739D10028F771 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
