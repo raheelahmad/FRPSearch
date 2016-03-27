@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,19 +18,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PTj-QO-aI9">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9bQ-9R-1Tq">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GUr-t7-98g">
+                                    <size key="itemSize" width="204" height="156"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movie" id="00B-tM-5jX" customClass="MovieCell" customModule="RACSearch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="156"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="204" height="156"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pU2-tB-2kf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="204" height="133.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pH7-Py-xjM">
+                                                    <rect key="frame" x="0.0" y="137.5" width="204" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="pU2-tB-2kf" firstAttribute="leading" secondItem="00B-tM-5jX" secondAttribute="leading" id="2Q8-aC-X4r"/>
+                                            <constraint firstItem="pH7-Py-xjM" firstAttribute="top" secondItem="pU2-tB-2kf" secondAttribute="bottom" constant="4" id="SBV-hV-D7u"/>
+                                            <constraint firstAttribute="bottom" secondItem="pH7-Py-xjM" secondAttribute="bottom" constant="4" id="dbw-Kl-Pt2"/>
+                                            <constraint firstItem="pU2-tB-2kf" firstAttribute="top" secondItem="00B-tM-5jX" secondAttribute="top" id="evz-io-UhN"/>
+                                            <constraint firstAttribute="trailing" secondItem="pH7-Py-xjM" secondAttribute="trailing" id="oeP-Fr-FsW"/>
+                                            <constraint firstAttribute="trailing" secondItem="pU2-tB-2kf" secondAttribute="trailing" id="tfd-EM-QvR"/>
+                                            <constraint firstItem="pH7-Py-xjM" firstAttribute="leading" secondItem="00B-tM-5jX" secondAttribute="leading" id="v00-1x-wp5"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="pU2-tB-2kf" id="vsg-iT-sYv"/>
+                                            <outlet property="nameLabel" destination="pH7-Py-xjM" id="Mkz-f0-wnG"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="PTj-QO-aI9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9bQ-9R-1Tq" secondAttribute="trailing" id="DAW-R3-BwL"/>
+                            <constraint firstItem="9bQ-9R-1Tq" firstAttribute="top" secondItem="PTj-QO-aI9" secondAttribute="bottom" id="E6h-V3-oWy"/>
+                            <constraint firstItem="PTj-QO-aI9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="IQu-IG-xs9"/>
+                            <constraint firstItem="PTj-QO-aI9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QHC-MP-t0F"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9bQ-9R-1Tq" secondAttribute="bottom" id="YgL-t7-VgG"/>
+                            <constraint firstAttribute="trailing" secondItem="PTj-QO-aI9" secondAttribute="trailing" id="ZYw-i4-wIy"/>
+                            <constraint firstItem="9bQ-9R-1Tq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gAN-Pl-zIA"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="9bQ-9R-1Tq" id="4ai-V1-ipQ"/>
                         <outlet property="searchBar" destination="PTj-QO-aI9" id="1Kk-qU-l64"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="840" y="452"/>
         </scene>
     </scenes>
 </document>
