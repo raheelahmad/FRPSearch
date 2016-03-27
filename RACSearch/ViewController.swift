@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         
         searchBar.rac_searchBarTextDidChange.observeNext {
             self.fetcher.fetchForText($0.1!).observeOn(UIScheduler()).startWithNext { movies in
-                print(movies)
                 self.movies = movies
                 self.collectionView.reloadData()
             }
@@ -45,8 +44,7 @@ extension ViewController: UICollectionViewDataSource {
         guard let movieCell = cell as? MovieCell where index < movies.count else { return cell }
         
         let movie = movies[index]
-        movieCell.imageView.image = nil
-        movieCell.nameLabel.text = movie.name
+        movieCell.setup(movie)
         
         return movieCell
     }

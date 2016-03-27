@@ -10,7 +10,7 @@ import Foundation
 
 struct Movie: Equatable {
     let name: String
-    let imageURL: NSURL?
+    let imageURL: NSURL
 }
 
 func == (lhs: Movie, rhs: Movie) -> Bool {
