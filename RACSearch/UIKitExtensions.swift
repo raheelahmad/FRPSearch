@@ -14,26 +14,27 @@ extension UISearchBar : UISearchBarDelegate {
     public var rac_searchBarTextDidChange : Signal<(UISearchBar,String?),NoError> {
         var searchBarTextDidChange: UInt8 = 0
         
-        var value = objc_getAssociatedObject(self, &searchBarTextDidChange) as? Signal<(UISearchBar,String?),NoError>
-        if value == nil {
+        var searchBarSignal = objc_getAssociatedObject(self, &searchBarTextDidChange) as? Signal<(UISearchBar,String?),NoError>
+        if searchBarSignal == nil {
             self.delegate = self
             
-            let signalProducer: SignalProducer<(UISearchBar, String?), NoError> = self.rac_signalForSelector(Selector("searchBar:textDidChange:"), fromProtocol: UISearchBarDelegate.self)
+            let signalProducer: SignalProducer<(UISearchBar, String?), NoError> = rac_signalForSelector(Selector("searchBar:textDidChange:"), fromProtocol: UISearchBarDelegate.self)
                 .toSignalProducer()
-                .flatMapError { (sp) -> SignalProducer<AnyObject?, NoError> in
-                    let sp = SignalProducer<AnyObject?, NoError>(value: nil)
-                    return sp
+                .flatMapError { _ -> SignalProducer<AnyObject?, NoError> in
+                    return SignalProducer<AnyObject?, NoError>(value: nil)
                 }
                 .map {
                     let tuple = $0 as! RACTuple
                     return (tuple.first as! UISearchBar, tuple.second as! String?)
                 }
+            
             signalProducer.startWithSignal({ (inner, _) -> () in
-                value = inner
+                searchBarSignal = inner
             })
             
-            objc_setAssociatedObject(self,  &searchBarTextDidChange, value, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self,  &searchBarTextDidChange, searchBarSignal, .OBJC_ASSOCIATION_RETAIN)
         }
-        return value!
+        
+        return searchBarSignal!
     }
 }
