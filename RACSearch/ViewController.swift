@@ -14,15 +14,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private let fetcher = MovieFetcher()
+    
     var signal: SignalProducer<String, NoError>?
     
-    var movies: [Movie] = []
+    private var movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.dataSource = self
         
         searchBar.rac_searchBarTextDidChange.observeNext {
-            print($0.1)
+            self.fetcher.fetchForText($0.1!).observeOn(UIScheduler()).startWithNext { movies in
+                print(movies)
+                self.movies = movies
+                self.collectionView.reloadData()
+            }
         }
     }
 }
