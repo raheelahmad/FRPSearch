@@ -18,7 +18,7 @@ final class MovieCell: UICollectionViewCell {
 
 extension MovieCell {
     func setup(movie: Movie) {
-        imageView.kf_setImageWithURL(movie.imageURL)
+        imageView.kf_setImageWithURL(movie.imageURL, placeholderImage: Image(named: "placeholder.png"))
         nameLabel.text = movie.name
     }
     
