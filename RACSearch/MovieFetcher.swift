@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveCocoa
+import Result
 
 typealias JSON = [String: AnyObject]
 
@@ -25,6 +26,8 @@ func toMovies(json: JSON) -> [Movie] {
 
 enum FetchError: ErrorType {
     case Networking
+    case Parsing
+    case General
 }
 
 func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
@@ -32,13 +35,16 @@ func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
     
     return NSURLSession.sharedSession().rac_dataWithRequest(request)
         .mapError { _ in FetchError.Networking }
-        .map { data, response in
+        .attemptMap { data, response in
+            guard let httpResponse = response as? NSHTTPURLResponse where httpResponse.isLegit else {
+                return Result<[Movie], FetchError>.Failure(FetchError.Networking)
+            }
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? JSON {
-                    return toMovies(json)
+                    return .Success(toMovies(json))
                 }
             } catch { }
-             return []
+             return .Failure(FetchError.Parsing)
         }
         .on(started: {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -46,7 +52,16 @@ func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
         .on(completed: {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         })
+        .on(failed: { error in
+            print("Error: \(error)")
+        })
         .on(interrupted: {
             print("Fetch request interrupted. Probably because of FlattenStrategy.Latest")
         })
+}
+
+extension NSHTTPURLResponse {
+    var isLegit: Bool {
+        return statusCode >= 200 && statusCode < 400
+    }
 }

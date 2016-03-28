@@ -29,12 +29,20 @@ class ViewController: UIViewController {
             .mapError { _ in FetchError.Networking }
             .flatMap(FlattenStrategy.Latest) { fetchForText($0) }
             .observeOn(UIScheduler())
-            .startWithNext { [weak self] movies in
-                self?.movies = movies
-                self?.collectionView.reloadData()
-            }
+            .on(failed: failure)
+            .on(next: success)
+            .start()
+    }
+}
 
-
+extension ViewController { // MARK: Side effects
+    func success(movies: [Movie]) {
+        self.movies = movies
+        collectionView.reloadData()
+    }
+    
+    func failure(error: FetchError) {
+        print("in ViewController: \(error)")
     }
 }
 
