@@ -21,7 +21,9 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        SignalProducer(signal: searchBar.rac_searchBarTextDidChange).map { $0.1! }
+        SignalProducer(signal: searchBar.rac_searchBarTextDidChange)
+            .map { $0.1! }
+            .throttle(0.5, onScheduler: QueueScheduler.init(qos: QOS_CLASS_USER_INITIATED, name: "com.example.SearchBarTextThrottle"))
             .mapError { _ in FetchError.Networking }
             .flatMap(FlattenStrategy.Latest) { fetchForText($0) }
             .observeOn(UIScheduler())

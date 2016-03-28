@@ -29,6 +29,7 @@ enum FetchError: ErrorType {
 
 func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
     let request = NSURLRequest(URL: NSURL(string: "https://itunes.apple.com/search?term=\(term)&media=movie")!)
+    print("Started search for \(term)")
     return NSURLSession.sharedSession().rac_dataWithRequest(request)
         .mapError { _ in FetchError.Networking }
         .map { data, response in
