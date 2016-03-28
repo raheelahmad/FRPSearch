@@ -21,7 +21,9 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        SignalProducer(signal: searchBar.rac_searchBarTextDidChange)
+        // To see the effect of "Latest", remove throttle, so multiple requests are in flight.
+        
+        SignalProducer(signal: searchBar.rac_searchBarTextDidChange) // https://github.com/ReactiveCocoa/ReactiveCocoa/issues/2150#issuecomment-158778866
             .map { $0.1! }
             .throttle(0.5, onScheduler: QueueScheduler.init(qos: QOS_CLASS_USER_INITIATED, name: "com.example.SearchBarTextThrottle"))
             .mapError { _ in FetchError.Networking }

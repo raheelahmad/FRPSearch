@@ -18,9 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9bQ-9R-1Tq">
-                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
-                                <color key="backgroundColor" red="0.76660288482776762" green="0.98353365384615388" blue="0.95840211360519378" alpha="1" colorSpace="calibratedRGB"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9bQ-9R-1Tq">
+                                <rect key="frame" x="0.0" y="68" width="600" height="532"/>
+                                <color key="backgroundColor" red="0.72156862745098038" green="0.9882352941176471" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GUr-t7-98g">
                                     <size key="itemSize" width="262" height="156"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -66,15 +66,15 @@
                                 </cells>
                             </collectionView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="PTj-QO-aI9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="24" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.72156862749999995" green="0.98823529409999999" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9bQ-9R-1Tq" secondAttribute="trailing" id="DAW-R3-BwL"/>
                             <constraint firstItem="9bQ-9R-1Tq" firstAttribute="top" secondItem="PTj-QO-aI9" secondAttribute="bottom" id="E6h-V3-oWy"/>
-                            <constraint firstItem="PTj-QO-aI9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="IQu-IG-xs9"/>
+                            <constraint firstItem="PTj-QO-aI9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="24" id="IQu-IG-xs9"/>
                             <constraint firstItem="PTj-QO-aI9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QHC-MP-t0F"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9bQ-9R-1Tq" secondAttribute="bottom" id="YgL-t7-VgG"/>
                             <constraint firstAttribute="trailing" secondItem="PTj-QO-aI9" secondAttribute="trailing" id="ZYw-i4-wIy"/>

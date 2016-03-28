@@ -29,18 +29,24 @@ enum FetchError: ErrorType {
 
 func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
     let request = NSURLRequest(URL: NSURL(string: "https://itunes.apple.com/search?term=\(term)&media=movie")!)
-    print("Started search for \(term)")
+    
     return NSURLSession.sharedSession().rac_dataWithRequest(request)
         .mapError { _ in FetchError.Networking }
         .map { data, response in
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? JSON {
                     return toMovies(json)
-                } else {
-                    return []
                 }
-            } catch {
-                return []
-            }
-    }
+            } catch { }
+             return []
+        }
+        .on(started: {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        })
+        .on(completed: {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        })
+        .on(interrupted: {
+            print("Fetch request interrupted. Probably because of FlattenStrategy.Latest")
+        })
 }
