@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         // To see the effect of "Latest", remove throttle, so multiple requests are in flight.
         
-        let movieSignalProducer = SignalProducer(signal: searchBar.rac_searchBarTextDidChange) // https://github.com/ReactiveCocoa/ReactiveCocoa/issues/2150#issuecomment-158778866
+        SignalProducer(signal: searchBar.rac_searchBarTextDidChange) // https://github.com/ReactiveCocoa/ReactiveCocoa/issues/2150#issuecomment-158778866
             .map { $0.1! }
             .throttle(0.5, onScheduler: QueueScheduler.init(qos: QOS_CLASS_USER_INITIATED, name: "com.example.SearchBarTextThrottle"))
             .mapError { _ in FetchError.Networking }
@@ -36,16 +36,11 @@ class ViewController: UIViewController {
             .on(failed: { error in
                 print("in ViewController: \(error)")
             })
-        
-        let initial = SignalProducer<[Movie], FetchError>(value: movies)
-        let concated = initial.concat(movieSignalProducer)
-        let zipped = zip(movieSignalProducer, concated)
-        
-        zipped.on(next: { [weak self] (current, previous) in
-            self?.movies = current
-            self?.dfc.rows = current
-        })
-        .start()
+            .on(next: { [weak self] current in
+                self?.movies = current
+                self?.dfc.rows = current
+            })
+            .start()
     }
 }
 
