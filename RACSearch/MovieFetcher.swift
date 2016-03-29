@@ -32,6 +32,7 @@ enum FetchError: ErrorType {
 
 struct MovieFetcher {
     static func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
+        let term = term.stringByReplacingOccurrencesOfString(" ", withString: "+")
         let request = NSURLRequest(URL: NSURL(string: "https://itunes.apple.com/search?term=\(term)&media=movie")!)
         
         return NSURLSession.sharedSession().rac_dataWithRequest(request)
