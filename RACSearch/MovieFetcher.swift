@@ -30,34 +30,36 @@ enum FetchError: ErrorType {
     case General
 }
 
-func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
-    let request = NSURLRequest(URL: NSURL(string: "https://itunes.apple.com/search?term=\(term)&media=movie")!)
-    
-    return NSURLSession.sharedSession().rac_dataWithRequest(request)
-        .mapError { _ in FetchError.Networking }
-        .attemptMap { data, response in
-            guard let httpResponse = response as? NSHTTPURLResponse where httpResponse.isLegit else {
-                return Result<[Movie], FetchError>.Failure(FetchError.Networking)
-            }
-            do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? JSON {
-                    return .Success(toMovies(json))
+struct MovieFetcher {
+    static func fetchForText(term: String) -> SignalProducer<[Movie], FetchError>  {
+        let request = NSURLRequest(URL: NSURL(string: "https://itunes.apple.com/search?term=\(term)&media=movie")!)
+        
+        return NSURLSession.sharedSession().rac_dataWithRequest(request)
+            .mapError { _ in FetchError.Networking }
+            .attemptMap { data, response in
+                guard let httpResponse = response as? NSHTTPURLResponse where httpResponse.isLegit else {
+                    return Result<[Movie], FetchError>.Failure(FetchError.Networking)
                 }
-            } catch { }
-             return .Failure(FetchError.Parsing)
-        }
-        .on(started: {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        })
-        .on(completed: {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        })
-        .on(failed: { error in
-            print("Error: \(error)")
-        })
-        .on(interrupted: {
-            print("Fetch request interrupted. Probably because of FlattenStrategy.Latest")
-        })
+                do {
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? JSON {
+                        return .Success(toMovies(json))
+                    }
+                } catch { }
+                return .Failure(FetchError.Parsing)
+            }
+            .on(started: {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            })
+            .on(completed: {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            })
+            .on(failed: { error in
+                print("Error: \(error)")
+            })
+            .on(interrupted: {
+                print("Fetch request interrupted. Probably because of FlattenStrategy.Latest")
+            })
+    }
 }
 
 extension NSHTTPURLResponse {

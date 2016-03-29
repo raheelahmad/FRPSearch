@@ -27,22 +27,22 @@ class ViewController: UIViewController {
             .map { $0.1! }
             .throttle(0.5, onScheduler: QueueScheduler.init(qos: QOS_CLASS_USER_INITIATED, name: "com.example.SearchBarTextThrottle"))
             .mapError { _ in FetchError.Networking }
-            .flatMap(FlattenStrategy.Latest) { fetchForText($0) }
+            .flatMap(FlattenStrategy.Latest) { self.fetchForText($0) }
             .observeOn(UIScheduler())
-            .on(failed: failure)
-            .on(next: success)
+            .on(failed: { error in
+                print("in ViewController: \(error)")
+            })
+            .on(next: { [weak self] movies in
+                self?.movies = movies
+                self?.collectionView.reloadData()
+            })
             .start()
     }
 }
 
-extension ViewController { // MARK: Side effects
-    func success(movies: [Movie]) {
-        self.movies = movies
-        collectionView.reloadData()
-    }
-    
-    func failure(error: FetchError) {
-        print("in ViewController: \(error)")
+extension ViewController { // MARK: Signals
+    func fetchForText(text: String) -> SignalProducer<[Movie], FetchError> {
+        return MovieFetcher.fetchForText(text)
     }
 }
 
