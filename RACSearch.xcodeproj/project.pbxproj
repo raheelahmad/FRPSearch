@@ -13,6 +13,8 @@
 		6108DD9F1CA89B0D0080C9EA /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6108DD9E1CA89B0D0080C9EA /* Kingfisher.framework */; };
 		6108DDA01CA89B0D0080C9EA /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6108DD9E1CA89B0D0080C9EA /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6108DDA21CA8AC2A0080C9EA /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6108DDA11CA8AC2A0080C9EA /* placeholder.png */; };
+		6137EAC81CAA5CC800BA9919 /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6137EAC61CAA5CB900BA9919 /* Dwifft.framework */; };
+		6137EAC91CAA5CC800BA9919 /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6137EAC61CAA5CB900BA9919 /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		613EA9C61CA76E6200986785 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613EA9C51CA76E6200986785 /* UIKitExtensions.swift */; };
 		61F9B1D31CA739D10028F771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F9B1D21CA739D10028F771 /* AppDelegate.swift */; };
 		61F9B1D51CA739D10028F771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F9B1D41CA739D10028F771 /* ViewController.swift */; };
@@ -32,6 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6137EAC91CAA5CC800BA9919 /* Dwifft.framework in Embed Frameworks */,
 				61F9B1EC1CA73BF30028F771 /* ReactiveCocoa.framework in Embed Frameworks */,
 				6108DDA01CA89B0D0080C9EA /* Kingfisher.framework in Embed Frameworks */,
 				61F9B1EE1CA73BF30028F771 /* Result.framework in Embed Frameworks */,
@@ -47,6 +50,7 @@
 		6108DD981CA88D090080C9EA /* MovieFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieFetcher.swift; sourceTree = "<group>"; };
 		6108DD9E1CA89B0D0080C9EA /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		6108DDA11CA8AC2A0080C9EA /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		6137EAC61CAA5CB900BA9919 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		613EA9C51CA76E6200986785 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		61F9B1CF1CA739D10028F771 /* RACSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RACSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61F9B1D21CA739D10028F771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6137EAC81CAA5CC800BA9919 /* Dwifft.framework in Frameworks */,
 				61F9B1EB1CA73BF20028F771 /* ReactiveCocoa.framework in Frameworks */,
 				6108DD9F1CA89B0D0080C9EA /* Kingfisher.framework in Frameworks */,
 				61F9B1ED1CA73BF30028F771 /* Result.framework in Frameworks */,
@@ -93,6 +98,7 @@
 		613EA9C71CA76F0700986785 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6137EAC61CAA5CB900BA9919 /* Dwifft.framework */,
 				6108DD9E1CA89B0D0080C9EA /* Kingfisher.framework */,
 				61F9B1E91CA73BF20028F771 /* ReactiveCocoa.framework */,
 				61F9B1EA1CA73BF20028F771 /* Result.framework */,
