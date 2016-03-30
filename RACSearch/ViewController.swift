@@ -39,6 +39,7 @@ class ViewController: UIViewController {
             .on(failed: { [weak self] _ in
                 self?.showError()
             })
+            .retry(1000)
             .observeOn(UIScheduler())
             .on(next: { [weak self] current in
                 self?.hideError()
