@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -65,6 +66,24 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofS-4g-LWI">
+                                <rect key="frame" x="200.5" y="184" width="198" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error fetching movies :(" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3A-ru-YZc">
+                                        <rect key="frame" x="24" y="22" width="150.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.31306089743589749" green="0.31306089743589749" blue="0.31306089743589749" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.82475961538461529" green="0.82475961538461529" blue="0.82475961538461529" alpha="0.82777478448275865" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ofS-4g-LWI" secondAttribute="height" multiplier="400:121" id="IQ4-cb-rW1"/>
+                                    <constraint firstItem="E3A-ru-YZc" firstAttribute="centerX" secondItem="ofS-4g-LWI" secondAttribute="centerX" id="Or3-s0-ozE"/>
+                                    <constraint firstAttribute="height" constant="60" id="bV3-cY-e9Y"/>
+                                    <constraint firstItem="E3A-ru-YZc" firstAttribute="centerY" secondItem="ofS-4g-LWI" secondAttribute="centerY" id="dQT-hH-K0L"/>
+                                </constraints>
+                            </view>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="PTj-QO-aI9">
                                 <rect key="frame" x="0.0" y="24" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -72,6 +91,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.72156862749999995" green="0.98823529409999999" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="ofS-4g-LWI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AeK-eq-El3"/>
                             <constraint firstAttribute="trailing" secondItem="9bQ-9R-1Tq" secondAttribute="trailing" id="DAW-R3-BwL"/>
                             <constraint firstItem="9bQ-9R-1Tq" firstAttribute="top" secondItem="PTj-QO-aI9" secondAttribute="bottom" id="E6h-V3-oWy"/>
                             <constraint firstItem="PTj-QO-aI9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="24" id="IQu-IG-xs9"/>
@@ -79,10 +99,13 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9bQ-9R-1Tq" secondAttribute="bottom" id="YgL-t7-VgG"/>
                             <constraint firstAttribute="trailing" secondItem="PTj-QO-aI9" secondAttribute="trailing" id="ZYw-i4-wIy"/>
                             <constraint firstItem="9bQ-9R-1Tq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gAN-Pl-zIA"/>
+                            <constraint firstItem="ofS-4g-LWI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="164" id="uBr-f7-uDS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="9bQ-9R-1Tq" id="4ai-V1-ipQ"/>
+                        <outlet property="errorView" destination="ofS-4g-LWI" id="Dle-hT-X3K"/>
+                        <outlet property="errorViewTopConstraint" destination="uBr-f7-uDS" id="AOW-Dy-mPT"/>
                         <outlet property="searchBar" destination="PTj-QO-aI9" id="1Kk-qU-l64"/>
                     </connections>
                 </viewController>

@@ -55,6 +55,7 @@ struct MovieFetcher {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             })
             .on(failed: { error in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 print("Error: \(error)")
             })
             .on(interrupted: {
